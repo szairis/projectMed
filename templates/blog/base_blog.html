@@ -1,0 +1,22 @@
+<link rel="stylesheet" type="text/css" href="/static/apps/css/base.css" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="/static/apps/css/mobile.css" />
+<!--<link rel="stylesheet" type="text/css" href="/static/apps/css/mobile.css" />-->
+
+{% if latest_blogs %}
+<div id="listing_tile">
+  {% for blog_post in latest_blogs %}
+  <li{% if latest_blogs.has_next %} data-next="{{ latest_blogs.next_page_number }}" {% endif %}>
+    <div id="blag">
+      <h1><a class="no_dec" href="/blog/{{ blog_post.slug }}/" target="_blank">{{ blog_post.title }}</a></h1>
+      <h4>{{ blog_post.author }}</h4>
+      {{ blog_post.body|safe|linebreaks|truncatewords_html:100 }}
+      <div id="view_full" class="centered">
+	<a class="no_dec" href="/blog/{{ blog_post.slug }}/" target="_blank">
+	  click to view full blog post
+	</a>
+      </div>
+    </div>
+  </li>
+  {% endfor %}
+</div>
+{% endif %}

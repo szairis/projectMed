@@ -1,0 +1,95 @@
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="/static/apps/css/base.css" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="/static/apps/css/mobile.css" />
+<!--<link rel="stylesheet" type="text/css" href="/static/apps/css/mobile.css" />-->
+
+{% endblock extra_head %}
+
+{% if latest_listings  %}
+<div id="listing_tile">
+
+  {% for listing in latest_listings %}
+
+  {% if listing.is_alive %}
+
+  <li{% if latest_listings.has_next %} data-next="{{ latest_listings.next_page_number }}" {% endif %}>
+
+    <div id="top_tile">
+      <h2>{{ listing.med_center }}</h2>
+      <h5>{{ listing.specialty }}</h5>
+      <div id="active">
+	{% if listing.is_active%}
+	<font color="#007c04">active</font>
+	{% else %}
+	<font color="red">inactive</font>
+	{% endif %}
+      </div>
+
+    </div>
+
+
+    <h1><a class="no_dec" href="/listings/{{ listing.gen_url }}/" target="_blank">{{ listing.title }}</a></h1>
+
+    
+    <div id="description">
+      <div id="d{{listing.id}}u" class="unhidden">
+	<a href="javascript:unhide('d{{listing.id}}h');javascript:unhide('d{{listing.id}}u');">
+	  {{ listing.description|linebreaks|truncatechars:140 }}
+	</a>
+	<div id="exp" class="centered">
+	  [<a href="javascript:unhide('d{{listing.id}}h');javascript:unhide('d{{listing.id}}u');">+</a>]
+	</div>
+      </div>
+    </div>
+    
+    <div id="description">
+      <div id="d{{listing.id}}h" class="hidden">
+	<a href="/listings/{{ listing.gen_url }}/" target="_blank">
+	  {{ listing.description|linebreaks }}
+	</a>
+	<div id="exp" class="centered">
+	[<a href="javascript:unhide('d{{listing.id}}h');javascript:unhide('d{{listing.id}}u');">-</a>]
+	</div>
+	<div id="view_full" class="centered">
+	  <a class="no_dec" href="/listings/{{ listing.gen_url }}/" target="_blank">
+	    click to view full listing
+	  </a>
+	</div>
+    {% if listing.is_active%}
+    <div id="stage_boxes">
+      <div id="stage_box"{% if listing.needs_irb%} class="legible" {% else %} class="white" {% endif %}>
+	irb<br>submission
+      </div>
+      <div id="stage_box"{% if listing.needs_basic_sci%} class="legible" {% else %} class="white" {% endif %}>
+	basic<br>science 
+      </div>
+      <div id="stage_box"{% if listing.needs_lit_review%} class="legible" {% else %} class="white" {% endif %}>
+	literature<br>review
+      </div>
+      <div id="stage_box"{% if listing.needs_patient_inter%} class="legible" {% else %} class="white" {% endif %}>
+	patient<br>interaction
+      </div>
+      <div id="stage_box"{% if listing.needs_chart_mining%} class="legible" {% else %} class="white" {% endif %}>
+	chart<br>mining
+      </div>
+      <div id="stage_box"{% if listing.needs_statistics%} class="legible" {% else %} class="white" {% endif %}>
+	statistical<br>analysis
+      </div>
+    </div>
+    {% endif %}
+      </div>
+    </div>
+    
+  </li>
+
+  {% endif %}
+  
+  {% endfor %}
+  
+</div>
+
+{% else  %}
+<center>
+<p>No listings available.</p>
+</center>
+{% endif %}

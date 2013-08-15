@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<center>
+  <br>
+  {{ text|linebreaks }}
+</center>
+
+{% if redirect == 'close' %}
+<script type="text/JavaScript">
+  setTimeout('self.close();',2500);
+</script>
+{% elif redirect == 'listings' %}
+<script type="text/JavaScript">
+  setTimeout("location.href = '/browse/';",5000);
+</script>
+{% endif%}
+
+{% endblock content %}
+

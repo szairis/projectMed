@@ -1,0 +1,31 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'projectMed site admin' %}{% endblock %}
+
+{% block branding %}
+
+  <div id="top">
+    <div id="header">
+      <span id="project">project</span><span id="Med">Med</span>
+    </div>
+    
+    <div id="page">
+      {{ title|upper }}
+    </div>
+    
+    <div id="slogan">
+      <p>
+	bridging the gap between principal
+	investigators and medical students
+      </p>
+    </div>
+    
+  </div>
+
+<div id="top_background">
+</div>
+
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

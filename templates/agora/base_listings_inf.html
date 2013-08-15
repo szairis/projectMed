@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+<script type="text/javascript" src="/static/apps/js/slidingText.js"></script>
+
+{% block sorting %}
+
+<div id="sort_toolbar">
+<form id="view_form" action="/search_listings/" method="get">
+  <li>
+  <div class="fieldWrapper">
+    {{ form.inc_inactive.errors }}
+    <label for="id_subject">Include inactive:</label>
+    {{ form.inc_inactive }}
+  </div>
+  </li>
+  <div class="form_line"></div>
+  <li>
+  <div class="fieldWrapper">
+    {{ form.med_center.errors }}
+    <label for="id_subject">Medical center:</label>
+    {{ form.med_center }}
+  </div>
+  </li>
+  <div class="form_line"></div>
+  <li>
+  <div class="fieldWrapper">
+    {{ form.specialty.errors }}
+    <label for="id_subject">Specialty:</label>
+    {{ form.specialty }}
+  </div>
+  </li>
+  <div class="form_line"></div>
+  <li>
+  <div class="fieldWrapper">
+    <input type="submit" value="Submit">
+  </div>
+  </li>
+</form>
+</div>
+
+{% endblock sorting %}
+
+
+
+{% block content %}
+
+<div id="listings">
+</div>
+
+<script type="text/javascript" src="/static/apps/js/inf_scroll.js"></script>
+<script type="text/javascript" src="/static/apps/js/sort_bar_top.js"></script>
+<script type="text/javascript" src="/static/apps/js/sort_bar_load.js"></script>
+
+{% endblock content %}

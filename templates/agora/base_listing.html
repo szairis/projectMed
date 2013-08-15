@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="listing_tile">
+  <li id="the_tile" class="shorter">
+    <div id="top_tile">
+      <h2>{{ listing.med_center }}</h2>
+      <h5>{{ listing.specialty }}</h5>
+      <div id="active">
+	{% if listing.is_active%}
+	<font color="#007c04">active</font>
+	{% else %}
+	<font color="red">inactive</font>
+	{% endif %}
+      </div>
+    </div>
+    
+    <h1>{{ listing.title }}</h1>
+    <div id="description">
+      {{ listing.description|linebreaks }}<br>
+    </div>
+    
+    {% if listing.is_active%}
+    <div id="stage_boxes">
+      <div id="stage_box"{% if listing.needs_irb%} class="legible" {% else %} class="white" {% endif %}>
+	irb<br>submission
+      </div>
+      <div id="stage_box"{% if listing.needs_basic_sci%} class="legible" {% else %} class="white" {% endif %}>
+	basic<br>science 
+      </div>
+      <div id="stage_box"{% if listing.needs_lit_review%} class="legible" {% else %} class="white" {% endif %}>
+	literature<br>review
+      </div>
+      <div id="stage_box"{% if listing.needs_patient_inter%} class="legible" {% else %} class="white" {% endif %}>
+	patient<br>interaction
+      </div>
+      <div id="stage_box"{% if listing.needs_chart_mining%} class="legible" {% else %} class="white" {% endif %}>
+	chart<br>mining
+      </div>
+      <div id="stage_box"{% if listing.needs_statistics%} class="legible" {% else %} class="white" {% endif %}>
+	statistical<br>analysis
+      </div>
+    </div>
+    
+    <div id="contact_poster" class="unhidden">
+      <div class="centered">
+	<hr>
+	<a class="no_dec" href="javascript:unhide('reply_form');javascript:unhide('contact_poster');">contact poster</a>
+      </div>
+    </div>
+    {% endif %}
+    
+    <div id="reply_form" class="hidden">
+      <hr>
+      <form action="/listings/{{ listing.gen_url }}/" method="post">{% csrf_token %}
+	<li>
+	  <div class="fieldWrapper">
+	    {{ form.name.errors }}
+	    <label for="id_subject">Name:</label><br>
+	    {{ form.name }}
+	  </div>
+	</li>
+	<li>
+	  <div class="fieldWrapper">
+	    {{ form.contact_email.errors }}
+	    <label for="id_subject">Contact email:</label><br>
+	    {{ form.contact_email }}
+	  </div>
+	</li>
+	<li>
+	  <div class="fieldWrapper">
+	    {{ form.med_center.errors }}
+	    <label for="id_subject">Medical school:</label><br>
+	    {{ form.med_center }}
+	  </div>
+	</li>
+	<div class="fieldWrapper">
+	  {{ form.msg_body.errors }}
+	  <label for="id_subject">Message:</label><br>
+	  {{ form.msg_body }}
+	</div>
+	<input type="submit" name="reply_sub" value="Submit" />
+      </form>
+      
+      <div class="centered">
+	<a class="no_dec" href="javascript:unhide('reply_form');javascript:unhide('contact_poster');">cancel</a>
+      </div>
+    </div>
+    
+    <hr>
+    <div class="float_left">
+      <a class="no_dec" href="javascript:close_window();">close</a>
+    </div>
+    
+    <div class="float_right">
+      <a class="no_dec" href="#openModal">modify listing</a>
+    </div>
+    
+    <div id="openModal" class="modalDialog">
+      <div>
+	<a href="#close" title="Close" class="close">X</a>
+	<div id="owner_form">
+	  <form action="/modify_listing/{{ listing.gen_url }}/" method="post">{% csrf_token %}
+	    <div class="fieldWrapper">
+	      {{ owner_form.email.errors }}
+	      <label for="id_subject">Email:</label><br>
+	      {{ owner_form.email }}
+	    </div>
+	    <div class="fieldWrapper">
+	      {{ owner_form.passkey.errors }}
+	      <label for="id_subject">Passkey:</label><br>
+	      {{ owner_form.passkey }}
+	    </div>
+	    <hr>
+	    <div class="centered">
+	      <input type="submit" name="edit_sub" value="Edit" />
+	      <input type="submit" name="delete_sub" value="Delete" />
+	    </div>
+	  </form>	
+	</div>
+      </div>
+    </div>
+    
+  </li>
+</div>
+{% endblock content %}
+

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<!--
+<script type="text/javascript" src="/static/apps/js/slidingText.js"></script>
+-->
+{% endblock extra_head %}
+
+{% block content %}
+<div id="listing_tile">
+<li>
+{{ text|safe }}
+</li>
+</div>
+{% endblock content %}
+

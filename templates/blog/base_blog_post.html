@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="listing_tile">
+  <li>
+    <div id="blag">
+      <h1>{{ blog_post.title }}</h1>
+      <h4>{{ blog_post.author }}</h4>
+      {{ blog_post.body|safe|linebreaks }}
+    </div>
+
+    <hr>
+    <div class="float_left">
+      <a class="no_dec" href="javascript:close_window();">close</a>
+    </div>
+
+  </li>
+</div>
+
+{% endblock content%}
+

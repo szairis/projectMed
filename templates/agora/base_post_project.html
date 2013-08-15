@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="listing_tile">
+<li>
+<div id="posting_form">
+<form action="/submit/" name="post_sub" method="post">{% csrf_token %}
+  <li>
+  <div class="fieldWrapper">
+    {{ form.specialty.errors }}
+    <label for="id_subject">Specialty:</label><br>
+    {{ form.specialty }}
+  </div>
+  </li>
+  <li>
+  <div class="fieldWrapper">
+    {{ form.med_center.errors }}
+    <label for="id_subject">Medical Center:</label><br>
+    {{ form.med_center }}
+  </div>
+  </li>
+  <br>
+  Your project needs:
+  <div id="needs">
+    <li>
+    <div class="fieldWrapper">
+      {{ form.needs_irb.errors }}
+      {{ form.needs_irb }}
+      <label for="id_subject">IRB submission</label>
+    </div>
+    </li><br>
+    <li>
+    <div class="fieldWrapper">
+      {{ form.needs_basic_sci.errors }}
+      {{ form.needs_basic_sci }}
+      <label for="id_subject">Basic science experiments</label>
+    </div>
+    </li><br>
+    <li>
+    <div class="fieldWrapper">
+      {{ form.needs_lit_review.errors }}
+      {{ form.needs_lit_review }}
+      <label for="id_subject">Literature review</label>
+    </div>
+    </li><br>
+    <li>
+    <div class="fieldWrapper">
+      {{ form.needs_patient_inter.errors }}
+      {{ form.needs_patient_inter }}
+      <label for="id_subject">Patient interaction</label>
+    </div>
+    </li><br>
+    <li>
+    <div class="fieldWrapper">
+      {{ form.needs_chart_mining.errors }}
+      {{ form.needs_chart_mining }}
+      <label for="id_subject">Chart mining</label>
+    </div>
+    </li><br>
+    <li>
+    <div class="fieldWrapper">
+    {{ form.needs_statistics.errors }}
+    {{ form.needs_statistics }}
+    <label for="id_subject">Statistical analysis</label>
+    </div>
+    </li>
+  </div>
+  <li>
+  <div class="fieldWrapper">
+    {{ form.name.errors }}
+    <label for="id_subject">Name:</label><br>
+    {{ form.name }}
+  </div>
+  </li>
+  <li>
+  <div class="fieldWrapper">
+    {{ form.contact_email.errors }}
+    <label for="id_subject">Contact Email:</label><br>
+    {{ form.contact_email }}
+  </div>
+  </li>
+  <div class="fieldWrapper">
+    {{ form.title.errors }}
+    <label for="id_subject">Title:</label><br>
+    {{ form.title }}
+  </div>
+  <div class="fieldWrapper">
+    {{ form.description.errors }}
+    <label for="id_subject">Description of your project:</label><br>
+    {{ form.description }}
+  </div>
+  <div class="fieldWrapper">
+    {{ form.is_active.errors }}
+    <label for="id_subject">Is Active:</label>
+    {{ form.is_active }}
+  </div>
+  <input type="submit" value="Submit" />
+</form>
+</div>
+</li>
+</div>
+
+{% endblock content %}
+

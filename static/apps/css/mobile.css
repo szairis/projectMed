@@ -1,0 +1,37 @@
+body {
+    margin: 0px;
+    font-size: 100%;
+    font-family: "Helvetica";
+}
+
+#top {
+    margin-left: 0;
+}
+
+#welcome_boxes a {
+    width: 47%;
+}
+
+#welcome_boxes a#left_box{
+    float: left;
+    margin-left: 2%;
+    background-color: #f87a7a;
+}
+
+#welcome_boxes a#right_box{
+    float: right;
+    margin-right: 2%;
+    background-color: #81d3ff;
+}
+
+#listing_tile > li {
+    width: 90%;
+}
+
+#listing_tile #top_tile {
+    width:100%;
+}
+
+.about_text {
+    opacity: 1;
+}
